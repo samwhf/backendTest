@@ -1,0 +1,134 @@
+basePath: /api/v1
+definitions:
+  objects.User:
+    properties:
+      address:
+        type: string
+      createdAt:
+        example: 服务端会自动生成
+        type: string
+      description:
+        type: string
+      dob:
+        type: string
+      id:
+        example: 服务端会自动生成
+        type: string
+      name:
+        type: string
+    type: object
+  responder.ResponseBody:
+    properties:
+      data:
+        type: object
+      message:
+        type: string
+      status:
+        type: integer
+      success:
+        type: boolean
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: API REST in Golang with Gin Framework
+  license: {}
+  title: User Routing Service
+  version: "1.0"
+paths:
+  /user:
+    post:
+      consumes:
+      - application/json
+      description: Create available user from db
+      operationId: create-user
+      parameters:
+      - description: user params
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/objects.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responder.ResponseBody'
+        "400": {}
+      summary: Create Available User
+      tags:
+      - sample
+  /user/{id}:
+    delete:
+      description: Delete available user from db
+      operationId: delete-user
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responder.ResponseBody'
+        "400": {}
+      summary: Delete Available User
+      tags:
+      - sample
+    get:
+      description: Get available user from db
+      operationId: get-user
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responder.ResponseBody'
+      summary: Get Available User
+      tags:
+      - sample
+    put:
+      consumes:
+      - application/json
+      description: Update available user from db
+      operationId: update-user
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: user params
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/objects.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/responder.ResponseBody'
+        "400": {}
+      summary: Update Available User
+      tags:
+      - sample
+swagger: "2.0"
